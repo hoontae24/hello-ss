@@ -1,5 +1,7 @@
+import { MESSAGE } from "@/consts";
+
 const Page = () => {
-  return <h1>Hello SS!</h1>;
+  return <h1>{MESSAGE}</h1>;
 };
 
 export default Page;
