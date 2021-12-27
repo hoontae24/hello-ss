@@ -1,6 +1,11 @@
 {
-  "extends": "next",
+  "extends": ["eslint-config-next", "eslint-config-prettier"],
+  "plugins": ["prettier"],
   "rules": {
-    "prefer-const": "warn"
+    // JS
+    "prefer-const": "warn",
+
+    // prettier
+    "prettier/prettier": "warn"
   }
 }
