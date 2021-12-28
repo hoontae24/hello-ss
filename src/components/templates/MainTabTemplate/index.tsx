@@ -2,7 +2,12 @@ import { memo, useCallback, VFC } from "react";
 
 import Tabs from "@/components/parts/Tabs";
 import Tab from "@/components/parts/Tab";
-import { allMainTabs, isValidMainTab, MainTab } from "@/consts/main-tab";
+import {
+  allMainTabs,
+  getMainTabLabel,
+  isValidMainTab,
+  MainTab,
+} from "@/consts/main-tab";
 
 export interface MainTabTemplateProps {
   tab: MainTab;
@@ -23,9 +28,10 @@ const _MainTabTemplate: VFC<MainTabTemplateProps> = (props) => {
   return (
     <Tabs value={tab} onChange={handleTabChange}>
       {allMainTabs.map((tab) => {
+        const label = getMainTabLabel(tab);
         return (
           <Tab key={tab} value={tab}>
-            {tab}
+            {label}
           </Tab>
         );
       })}

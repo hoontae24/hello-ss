@@ -24,7 +24,11 @@ const _Tab: FC<TabProps> = (props) => {
 
   return (
     <li className={clsx(cls.root, selected && cls.rootSelected, className)}>
-      <button className={cls.button} onClick={handleChange}>
+      <div className={clsx(cls.indicator, selected && cls.indecatorSelected)} />
+      <button
+        className={clsx(cls.button, selected && cls.buttonSelected)}
+        onClick={handleChange}
+      >
         {children}
       </button>
     </li>

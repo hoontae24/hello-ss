@@ -1,13 +1,12 @@
 @import "@/styles/theme.scss";
 
 .root {
+  position: relative;
   color: $color-text-3;
 }
 
 .rootSelected {
-  .button {
-    color: $color-text-1;
-  }
+  -x: "";
 }
 
 .button {
@@ -17,4 +16,21 @@
   font-size: $font-size-body-1;
   color: inherit;
   cursor: pointer;
+}
+
+.buttonSelected {
+  color: $color-text-1;
+}
+
+.indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: $color-border-1;
+}
+
+.indecatorSelected {
+  background-color: $color-text-1;
 }
