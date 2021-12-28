@@ -9,6 +9,8 @@ import {
   MainTab,
 } from "@/consts/main-tab";
 
+import cls from "./index.module.scss";
+
 export interface MainTabTemplateProps {
   tab: MainTab;
   onTabChange: (tab: MainTab) => void;
@@ -30,7 +32,11 @@ const _MainTabTemplate: VFC<MainTabTemplateProps> = (props) => {
       {allMainTabs.map((tab) => {
         const label = getMainTabLabel(tab);
         return (
-          <Tab key={tab} value={tab}>
+          <Tab
+            key={tab}
+            classes={{ root: cls.tab, button: cls.tabButton }}
+            value={tab}
+          >
             {label}
           </Tab>
         );

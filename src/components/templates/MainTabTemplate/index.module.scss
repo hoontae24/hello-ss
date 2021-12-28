@@ -1,0 +1,10 @@
+@import "@/styles/theme.scss";
+
+.tab {
+  width: 50%;
+}
+.tabButton {
+  width: 100%;
+  padding: spacing(1.5);
+  font-size: $font-size-body-2;
+}

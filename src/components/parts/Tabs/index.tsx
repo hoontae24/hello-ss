@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { FC, memo, useCallback } from "react";
 
 import { TabContext, TabContextProvider, TabValue } from "@/contexts/tab";
-import { HasClassName } from "@/typings/components";
+import { HasClassName } from "@/libs/styles";
 
 import cls from "./index.module.scss";
 

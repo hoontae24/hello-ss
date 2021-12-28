@@ -1,18 +1,19 @@
 import clsx from "clsx";
 import { FC, memo, useCallback, useMemo } from "react";
 
+import { classes, HasClasses, HasClassName } from "@/libs/styles";
 import { TabValue, useTabContext } from "@/contexts/tab";
-import { HasClassName } from "@/typings/components";
 
-import cls from "./index.module.scss";
+import _cls from "./index.module.scss";
 
-export interface TabProps extends HasClassName {
+export interface TabProps extends HasClassName, HasClasses<keyof typeof _cls> {
   value?: TabValue;
 }
 
 const _Tab: FC<TabProps> = (props) => {
   const { onChange, isSelected } = useTabContext();
-  const { className, value, children } = props;
+  const { value, children } = props;
+  const cls = classes(_cls, props);
 
   const selected = useMemo(() => {
     return !!value && isSelected(value);
@@ -23,7 +24,7 @@ const _Tab: FC<TabProps> = (props) => {
   }, [value, onChange]);
 
   return (
-    <li className={clsx(cls.root, selected && cls.rootSelected, className)}>
+    <li className={clsx(cls.root, selected && cls.rootSelected)}>
       <div className={clsx(cls.indicator, selected && cls.indecatorSelected)} />
       <button
         className={clsx(cls.button, selected && cls.buttonSelected)}
