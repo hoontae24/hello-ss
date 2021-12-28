@@ -1,13 +1,22 @@
+import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 
 import MainTabTemplate from "@/components/templates/MainTabTemplate";
-import { getMainTabQueryValue, MainTab } from "@/consts/main-tab";
+import {
+  defaultMainTab,
+  getMainTabByQueryValue,
+  getMainTabQueryValue,
+  MainTab,
+} from "@/consts/main-tab";
 import { getQueryParamKey, QueryParam } from "@/consts/query-param";
-import { useMainTabQuery } from "@/hooks/main-tab";
 
-const Page = () => {
+interface PageProps {
+  mainTab: MainTab;
+}
+
+const Page: NextPage<PageProps> = (props) => {
   const router = useRouter();
-  const mainTab = useMainTabQuery();
+  const { mainTab } = props;
 
   const handleTabChange = (tab: MainTab) => {
     const key = getQueryParamKey(QueryParam.MAIN_TAB);
@@ -26,3 +35,18 @@ const Page = () => {
 };
 
 export default Page;
+
+export const getServerSideProps: GetServerSideProps<PageProps> = async (
+  ctx
+) => {
+  const mainTabQueryValue = ctx.query[getQueryParamKey(QueryParam.MAIN_TAB)];
+
+  return {
+    props: {
+      mainTab:
+        typeof mainTabQueryValue === "string"
+          ? getMainTabByQueryValue(mainTabQueryValue)
+          : defaultMainTab,
+    },
+  };
+};
