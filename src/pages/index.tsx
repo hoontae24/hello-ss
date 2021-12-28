@@ -1,31 +1,30 @@
-import Link from "next/link";
+import { useRouter } from "next/router";
 
-import {
-  allMainTabs,
-  getMainTabLabel,
-  getMainTabQueryValue,
-} from "@/consts/main-tab";
+import MainTabTemplate from "@/components/templates/MainTabTemplate";
+import { getMainTabQueryValue } from "@/consts/main-tab";
 import { getQueryParamKey, QueryParam } from "@/consts/query-param";
 import { useMainTabQuery } from "@/hooks/main-tab";
 
 const Page = () => {
+  const router = useRouter();
   const mainTab = useMainTabQuery();
 
   return (
-    <div>
-      {allMainTabs.map((tab) => (
-        <div key={tab}>
-          <Link
-            href={`?${getQueryParamKey(
-              QueryParam.MAIN_TAB
-            )}=${getMainTabQueryValue(tab)}`}
-          >
-            {getMainTabLabel(tab)}
-          </Link>
-          {tab === mainTab && "(current)"}
-        </div>
-      ))}
-    </div>
+    <>
+      <header>
+        <MainTabTemplate
+          tab={mainTab}
+          onTabChange={(tab) => {
+            router.push(
+              `?${getQueryParamKey(QueryParam.MAIN_TAB)}=${getMainTabQueryValue(
+                tab
+              )}`
+            );
+          }}
+        />
+      </header>
+      <hr />
+    </>
   );
 };
 

@@ -1,0 +1,20 @@
+@import "@/styles/theme.scss";
+
+.root {
+  color: $color-text-3;
+}
+
+.rootSelected {
+  .button {
+    color: $color-text-1;
+  }
+}
+
+.button {
+  padding: spacing(1);
+  border: none;
+  background-color: unset;
+  font-size: $font-size-body-1;
+  color: inherit;
+  cursor: pointer;
+}
