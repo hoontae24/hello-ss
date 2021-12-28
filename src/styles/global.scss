@@ -1,5 +1,12 @@
+@import "@/styles/theme.scss";
+
 html,
 body {
   margin: 0;
   padding: 0;
+}
+
+html {
+  font-size: $font-size-body-1;
+  color: $color-text-1;
 }
