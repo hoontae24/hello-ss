@@ -9,4 +9,9 @@ body {
 html {
   font-size: $font-size-body-1;
   color: $color-text-1;
+
+  // Use "Pretendard", referenced "https://github.com/orioncactus/pretendard#font-family"
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+    "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR",
+    "Malgun Gothic", sans-serif;
 }
