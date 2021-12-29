@@ -32,8 +32,10 @@ export const useRelayStore = <Data = any>(
   }, []);
 
   useEffect(() => {
+    setData(undefined);
+    fetchUrlRef.current = depsRef.current.initialFetchUrl;
     sprint();
-  }, []);
+  }, [depsRef.current.initialFetchUrl]);
 
   const store: RelayStore<Data> = {
     data: data,
