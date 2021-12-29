@@ -1,12 +1,7 @@
 import { GetServerSideProps, NextPage } from "next";
-import { useRouter } from "next/router";
 
-import MainTabTemplate from "@/components/templates/MainTabTemplate";
-import {
-  getMainTabByQueryValue,
-  getMainTabQueryValue,
-  MainTab,
-} from "@/consts/main-tab";
+import MainTabView from "@/components/views/MainTabView";
+import { getMainTabByQueryValue, MainTab } from "@/consts/main-tab";
 import { getQueryParamKey, QueryParam } from "@/consts/query-param";
 
 interface PageProps {
@@ -14,20 +9,12 @@ interface PageProps {
 }
 
 const Page: NextPage<PageProps> = (props) => {
-  const router = useRouter();
   const { mainTab } = props;
-
-  const handleTabChange = (tab: MainTab) => {
-    const key = getQueryParamKey(QueryParam.MAIN_TAB);
-    const value = getMainTabQueryValue(tab);
-    const url = `?${key}=${value}`;
-    router.push(url);
-  };
 
   return (
     <>
       <header>
-        <MainTabTemplate tab={mainTab} onTabChange={handleTabChange} />
+        <MainTabView mainTab={mainTab} />
       </header>
     </>
   );
