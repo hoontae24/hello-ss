@@ -49,7 +49,7 @@ export const getMainTabQueryValue = (value: MainTab): string => {
   return helper.getQueryValue();
 };
 
-export const getMainTabByQueryValue = (value: string): MainTab => {
+export const getMainTabByQueryValue = (value: unknown): MainTab => {
   const mainTab = allMainTabs.find(
     (tab) => getMainTabQueryValue(tab) === value
   );

@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 
 import MainTabTemplate from "@/components/templates/MainTabTemplate";
 import {
-  defaultMainTab,
   getMainTabByQueryValue,
   getMainTabQueryValue,
   MainTab,
@@ -40,13 +39,11 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
   ctx
 ) => {
   const mainTabQueryValue = ctx.query[getQueryParamKey(QueryParam.MAIN_TAB)];
+  const mainTab = getMainTabByQueryValue(mainTabQueryValue);
 
   return {
     props: {
-      mainTab:
-        typeof mainTabQueryValue === "string"
-          ? getMainTabByQueryValue(mainTabQueryValue)
-          : defaultMainTab,
+      mainTab: mainTab,
     },
   };
 };
