@@ -5,6 +5,9 @@
     // JS
     "prefer-const": "warn",
 
+    // react
+    "react-hooks/exhaustive-deps": "off",
+
     // prettier
     "prettier/prettier": "warn"
   }
