@@ -17,15 +17,15 @@ const Page: NextPage<PageProps> = (props) => {
 
   return (
     <>
-      <header>
+      <header
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 1,
+        }}
+      >
         <MainTabView currentMainTab={mainTab} />
-        <div>{String(data?.length)}</div>
-        <div>
-          {data?.slice(0, 5).map((goods) => (
-            <div key={goods.id}>{goods.id}</div>
-          ))}
-        </div>
-        <button onClick={loadMore}>GOGO</button>
+        <button onClick={loadMore}>{String(data?.length)}</button>
       </header>
       <section>
         <GoodsTemplate data={data} />
