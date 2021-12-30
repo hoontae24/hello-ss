@@ -89,3 +89,7 @@ sketch
 
 # typescript
 tsconfig.tsbuildinfo
+
+# env
+.env*
+!.env*.defaults
