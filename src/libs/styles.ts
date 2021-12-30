@@ -4,11 +4,11 @@ export interface HasClassName {
   className?: string;
 }
 
-export interface HasClasses<K extends string> {
+export interface HasClasses<K extends string | number> {
   classes?: Partial<Record<K, string>>;
 }
 
-export const mergeClasses = <K extends string>(
+export const mergeClasses = <K extends string | number>(
   ...classesList: (Partial<Record<K, string>> | undefined)[]
 ): Partial<Record<K, string>> => {
   return classesList
@@ -23,7 +23,7 @@ export const mergeClasses = <K extends string>(
     }, {} as Partial<Record<K, string>>);
 };
 
-export const classes = <K extends string>(
+export const classes = <K extends string | number>(
   cls: Record<K | "root", string>,
   props: HasClassName & HasClasses<K | "root">
 ) => {
