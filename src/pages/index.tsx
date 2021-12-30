@@ -14,8 +14,6 @@ const Page: NextPage<PageProps> = (props) => {
 
   const { data, loadMore } = useGoodsListStore({ mainTab });
 
-  console.log(data);
-
   return (
     <>
       <header>

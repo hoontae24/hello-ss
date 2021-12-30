@@ -1,3 +1,4 @@
+import env from "@/consts/env";
 import { equals } from "@/libs/functions";
 import { ValueOf } from "@/typings/utils";
 
@@ -16,16 +17,19 @@ export const isValidMainTab = (value: unknown): value is MainTab => {
 export interface MainTabHelper {
   getLabel: () => string;
   getQueryValue: () => string;
+  getInitialFetchUrl: () => string;
 }
 
 class PopularityHelper implements MainTabHelper {
   getLabel = () => "인기순";
   getQueryValue = () => "popularity";
+  getInitialFetchUrl = () => env.API_URL_FOR_POPULARITY;
 }
 
 class LatestHelper implements MainTabHelper {
   getLabel = () => "최신순";
   getQueryValue = () => "latest";
+  getInitialFetchUrl = () => env.API_URL_FOR_LATEST;
 }
 
 class HelperFactory {
@@ -54,4 +58,9 @@ export const getMainTabByQueryValue = (value: unknown): MainTab => {
     (tab) => getMainTabQueryValue(tab) === value
   );
   return mainTab || defaultMainTab;
+};
+
+export const getMainTabInitialFetchUrl = (value: MainTab): string => {
+  const helper = HelperFactory.getHelper(value);
+  return helper.getInitialFetchUrl();
 };
