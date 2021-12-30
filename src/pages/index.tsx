@@ -17,7 +17,7 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <>
       <header>
-        <MainTabView mainTab={mainTab} />
+        <MainTabView currentMainTab={mainTab} />
         <div>{String(data?.length)}</div>
         <div>
           {data?.slice(0, 5).map((goods) => (

@@ -1,47 +1,42 @@
-import { memo, useCallback, VFC } from "react";
+import clsx from "clsx";
+import Link from "next/link";
+import { memo, VFC } from "react";
 
-import Tabs from "@/components/parts/Tabs";
-import Tab from "@/components/parts/Tab";
-import {
-  allMainTabs,
-  getMainTabLabel,
-  isValidMainTab,
-  MainTab,
-} from "@/consts/main-tab";
+import { getMainTabLabel } from "@/consts/main-tab";
+import { TabState } from "@/typings/domains/tab-state";
 
 import cls from "./index.module.scss";
 
 export interface MainTabTemplateProps {
-  tab: MainTab;
-  onTabChange: (tab: MainTab) => void;
+  tabStates: TabState[];
 }
 
 const _MainTabTemplate: VFC<MainTabTemplateProps> = (props) => {
-  const { tab, onTabChange } = props;
-
-  const handleTabChange = useCallback(
-    (value: unknown) => {
-      if (!isValidMainTab(value)) return;
-      onTabChange?.(value);
-    },
-    [onTabChange]
-  );
+  const { tabStates } = props;
 
   return (
-    <Tabs value={tab} onChange={handleTabChange}>
-      {allMainTabs.map((tab) => {
-        const label = getMainTabLabel(tab);
+    <ul className={cls.root}>
+      {tabStates.map((state) => {
+        const label = getMainTabLabel(state.value);
         return (
-          <Tab
-            key={tab}
-            classes={{ root: cls.tab, button: cls.tabButton }}
-            value={tab}
-          >
-            {label}
-          </Tab>
+          <li key={state.value} className={cls.wrapper}>
+            <div
+              className={clsx(
+                cls.indicator,
+                state.selected && cls.indecatorSelected
+              )}
+            />
+            <Link href={state.href}>
+              <a
+                className={clsx(cls.label, state.selected && cls.labelSelected)}
+              >
+                {label}
+              </a>
+            </Link>
+          </li>
         );
       })}
-    </Tabs>
+    </ul>
   );
 };
 

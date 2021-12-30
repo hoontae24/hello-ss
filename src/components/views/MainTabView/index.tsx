@@ -1,29 +1,19 @@
-import { useRouter } from "next/router";
-import { memo, useCallback, VFC } from "react";
+import { memo, VFC } from "react";
 
 import MainTabTemplate from "@/components/templates/MainTabTemplate";
-import { getMainTabQueryValue, MainTab } from "@/consts/main-tab";
-import { getQueryParamKey, QueryParam } from "@/consts/query-param";
+import { MainTab } from "@/consts/main-tab";
+import { useMainTabState } from "@/hooks/main-tab-state";
 
 export interface MainTabViewProps {
-  mainTab: MainTab;
+  currentMainTab: MainTab;
 }
 
 const _MainTabView: VFC<MainTabViewProps> = (props) => {
-  const router = useRouter();
-  const { mainTab } = props;
+  const { currentMainTab } = props;
 
-  const handleTabChange = useCallback(
-    (tab: MainTab) => {
-      const key = getQueryParamKey(QueryParam.MAIN_TAB);
-      const value = getMainTabQueryValue(tab);
-      const url = `?${key}=${value}`;
-      router.push(url);
-    },
-    [router]
-  );
+  const { tabStates } = useMainTabState({ current: currentMainTab });
 
-  return <MainTabTemplate tab={mainTab} onTabChange={handleTabChange} />;
+  return <MainTabTemplate tabStates={tabStates} />;
 };
 
 const MainTabView: VFC<MainTabViewProps> = memo(_MainTabView);
