@@ -1,11 +1,10 @@
-import clsx from "clsx";
-import Link from "next/link";
 import { memo, VFC } from "react";
 
 import { getMainTabLabel } from "@/consts/main-tab";
 import { TabState } from "@/typings/domains/tab-state";
 
-import cls from "./index.module.scss";
+import TabRoot from "./TabRoot";
+import TabItem from "./TabItem";
 
 export interface MainTabTemplateProps {
   tabStates: TabState[];
@@ -15,28 +14,21 @@ const _MainTabTemplate: VFC<MainTabTemplateProps> = (props) => {
   const { tabStates } = props;
 
   return (
-    <ul className={cls.root}>
+    <TabRoot>
       {tabStates.map((state) => {
         const label = getMainTabLabel(state.value);
         return (
-          <li key={state.value} className={cls.wrapper}>
-            <div
-              className={clsx(
-                cls.indicator,
-                state.selected && cls.indecatorSelected
-              )}
-            />
-            <Link href={state.href}>
-              <a
-                className={clsx(cls.label, state.selected && cls.labelSelected)}
-              >
-                {label}
-              </a>
-            </Link>
-          </li>
+          <TabItem
+            key={state.value}
+            value={state.value}
+            selected={state.selected}
+            href={state.href}
+          >
+            {label}
+          </TabItem>
         );
       })}
-    </ul>
+    </TabRoot>
   );
 };
 
