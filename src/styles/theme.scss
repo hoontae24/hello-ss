@@ -29,7 +29,7 @@ $unit: 8px;
 
 // media query by screen width
 $breakpoint-desktop: 768px;
-@mixin mobile {
+@mixin desktop {
   @media (min-width: #{$breakpoint-desktop}) {
     @content;
   }

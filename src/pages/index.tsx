@@ -1,5 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
 
+import GoodsTemplate from "@/components/templates/GoodsTemplate";
 import MainTabView from "@/components/views/MainTabView";
 import { getMainTabByQueryValue, MainTab } from "@/consts/main-tab";
 import { getQueryParamKey, QueryParam } from "@/consts/query-param";
@@ -26,6 +27,9 @@ const Page: NextPage<PageProps> = (props) => {
         </div>
         <button onClick={loadMore}>GOGO</button>
       </header>
+      <section>
+        <GoodsTemplate data={data} />
+      </section>
     </>
   );
 };

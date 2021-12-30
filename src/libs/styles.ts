@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { CSSProperties } from "react";
 
 export interface HasClassName {
   className?: string;
@@ -6,6 +7,10 @@ export interface HasClassName {
 
 export interface HasClasses<K extends string | number> {
   classes?: Partial<Record<K, string>>;
+}
+
+export interface HasStyle {
+  style?: CSSProperties;
 }
 
 export const mergeClasses = <K extends string | number>(

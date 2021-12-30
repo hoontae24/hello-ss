@@ -1,0 +1,44 @@
+@import "@/styles/theme.scss";
+
+.root {
+  display: inline-block;
+  padding: spacing(1);
+  flex-basis: calc(100% / 2);
+  @include desktop {
+    flex-basis: calc(100% / 3);
+  }
+}
+
+.picture {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  margin-bottom: spacing(1);
+
+  background-color: #00000015;
+  border-radius: $border-radius;
+  overflow: hidden;
+}
+
+.pictureFrame {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+}
+
+.title {
+  font-size: $font-size-body-2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.4em;
+  height: 2.8em;
+}
+
+.brandName {
+  margin-right: spacing(0.5);
+}
