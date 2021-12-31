@@ -8,6 +8,7 @@
 
 .root {
   display: inline-block;
+  margin-bottom: spacing(1);
   padding: spacing(1);
   flex-basis: calc(100% / 2);
   @include desktop {
