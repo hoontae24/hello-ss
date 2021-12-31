@@ -54,3 +54,13 @@
     color: $color-secondary-main;
   }
 }
+
+.reaction {
+  @include block;
+  color: $color-text-3;
+  font-size: $font-size-body-3;
+
+  span:not(:last-child) {
+    margin-right: spacing(0.5);
+  }
+}
