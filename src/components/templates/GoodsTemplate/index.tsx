@@ -1,9 +1,9 @@
 import { memo, VFC } from "react";
 
+import GoodsList from "@/components/parts/GoodsList";
+import GoodsListItem from "@/components/parts/GoodsListItem";
 import { Goods } from "@/typings/domains/goods";
 
-import GoodsList from "./GoodsList";
-import GoodsListItem from "./GoodsListItem";
 import cls from "./styles.module.scss";
 
 export interface GoodsTemplateProps {

@@ -1,5 +1,6 @@
-import { classes, HasClassName } from "@/libs/styles";
 import { FC, memo } from "react";
+
+import { classes, HasClassName } from "@/libs/styles";
 
 import _cls from "./styles.module.scss";
 
