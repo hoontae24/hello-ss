@@ -10,8 +10,10 @@ export interface TitleProps {
 const _Title: VFC<TitleProps> = (props) => {
   const { brandName, goodsName } = props;
 
+  const title = `${brandName} ${goodsName}`;
+
   return (
-    <div className={cls.title}>
+    <div className={cls.title} title={title}>
       <b className={cls.brandName}>{brandName}</b>
       {goodsName}
     </div>
