@@ -4,6 +4,7 @@ import { Goods } from "@/typings/domains/goods";
 
 import Picture from "./Picture";
 import Title from "./Title";
+import PriceTag from "./PriceTag";
 import cls from "./styles.module.scss";
 
 export interface GoodsListItemProps {
@@ -17,6 +18,11 @@ const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
     <li className={cls.root}>
       <Picture pictureId={item.picture.id} />
       <Title brandName={item.brand.name} goodsName={item.name} />
+      <PriceTag
+        isDiscounted={item.isDiscounted}
+        discountRate={item.discountRate}
+        price={item.price}
+      />
     </li>
   );
 };
