@@ -41,11 +41,13 @@
 
   .brandName {
     margin-right: spacing(0.5);
+    font-weight: 600;
   }
 }
 
 .priceTag {
   font-size: $font-size-body-2;
+  font-weight: 500;
 
   .discount {
     margin-right: spacing(0.5);
