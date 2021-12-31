@@ -35,3 +35,13 @@ $breakpoint-desktop: 768px;
     @content;
   }
 }
+
+@mixin multilines($line-count, $line-height: 1.4em) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: $line-count;
+  -webkit-box-orient: vertical;
+  line-height: $line-height;
+  height: $line-count * $line-height;
+}
