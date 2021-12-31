@@ -2,7 +2,11 @@ import { GetServerSideProps, NextPage } from "next";
 
 import GoodsTemplate from "@/components/templates/GoodsTemplate";
 import MainTabView from "@/components/views/MainTabView";
-import { getMainTabByQueryValue, MainTab } from "@/consts/main-tab";
+import {
+  getMainTabByQueryValue,
+  getMainTabInitialFetchUrl,
+  MainTab,
+} from "@/consts/main-tab";
 import { getQueryParamKey, QueryParam } from "@/consts/query-param";
 import { useGoodsListStore } from "@/hooks/goods-list-store";
 
@@ -13,7 +17,9 @@ interface PageProps {
 const Page: NextPage<PageProps> = (props) => {
   const { mainTab } = props;
 
-  const { data, loadMore } = useGoodsListStore({ mainTab });
+  const { data, loadMore } = useGoodsListStore({
+    initialFetchUrl: getMainTabInitialFetchUrl(mainTab),
+  });
 
   return (
     <>
@@ -25,11 +31,11 @@ const Page: NextPage<PageProps> = (props) => {
         }}
       >
         <MainTabView currentMainTab={mainTab} />
-        <button onClick={loadMore}>{String(data?.length)}</button>
       </header>
       <section>
         <GoodsTemplate data={data} />
       </section>
+      <button onClick={loadMore}>{String(data?.length)}</button>
     </>
   );
 };

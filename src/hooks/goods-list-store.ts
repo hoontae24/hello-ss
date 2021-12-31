@@ -1,12 +1,10 @@
 import { useMemo } from "react";
 
-import { getMainTabInitialFetchUrl, MainTab } from "@/consts/main-tab";
 import { useRelayStore } from "@/hooks/relay-store";
 import { Goods } from "@/typings/domains/goods";
-import env from "@/consts/env";
 
 export interface GoodsListStoreDeps {
-  mainTab: MainTab;
+  initialFetchUrl: string;
 }
 
 export interface GoodsListStore {
@@ -15,10 +13,10 @@ export interface GoodsListStore {
 }
 
 export const useGoodsListStore = (deps: GoodsListStoreDeps): GoodsListStore => {
-  const { mainTab } = deps;
+  const { initialFetchUrl } = deps;
 
   const { data, sprint } = useRelayStore({
-    initialFetchUrl: getMainTabInitialFetchUrl(mainTab),
+    initialFetchUrl: initialFetchUrl,
     fetcher,
     next,
   });
