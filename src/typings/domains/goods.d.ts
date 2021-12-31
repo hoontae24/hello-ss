@@ -1,9 +1,9 @@
 /** 브랜드 정보 */
 export interface Brand {
   /** 브랜드 ID */
-  id: 3193;
+  id: number;
   /** 브랜드 이름 */
-  name: "프랑켄모노";
+  name: string;
 }
 
 export type Badge =
