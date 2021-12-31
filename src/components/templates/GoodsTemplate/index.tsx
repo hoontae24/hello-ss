@@ -4,6 +4,7 @@ import { Goods } from "@/typings/domains/goods";
 
 import GoodsList from "./GoodsList";
 import GoodsListItem from "./GoodsListItem";
+import cls from "./styles.module.scss";
 
 export interface GoodsTemplateProps {
   data: Goods[] | undefined;
@@ -12,9 +13,9 @@ export interface GoodsTemplateProps {
 const _GoodsTemplate: VFC<GoodsTemplateProps> = (props) => {
   const { data } = props;
   return (
-    <GoodsList>
+    <GoodsList className={cls.list}>
       {data?.map((goods, i) => (
-        <GoodsListItem key={i} item={goods} />
+        <GoodsListItem key={i} className={cls.listItem} item={goods} />
       ))}
     </GoodsList>
   );

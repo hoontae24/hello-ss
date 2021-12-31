@@ -1,11 +1,13 @@
+import { classes, HasClassName } from "@/libs/styles";
 import { FC, memo } from "react";
 
-import cls from "./styles.module.scss";
+import _cls from "./styles.module.scss";
 
-export interface GoodsListProps {}
+export interface GoodsListProps extends HasClassName {}
 
 const _GoodsList: FC<GoodsListProps> = (props) => {
   const { children } = props;
+  const cls = classes(_cls, props);
 
   return <ul className={cls.root}>{children}</ul>;
 };

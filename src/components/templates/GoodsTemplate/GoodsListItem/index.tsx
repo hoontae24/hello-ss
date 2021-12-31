@@ -1,5 +1,6 @@
 import { memo, VFC } from "react";
 
+import { classes, HasClassName } from "@/libs/styles";
 import { Goods } from "@/typings/domains/goods";
 
 import Picture from "./Picture";
@@ -7,14 +8,15 @@ import Title from "./Title";
 import PriceTag from "./PriceTag";
 import Badges from "./Badges";
 import Reaction from "./Reaction";
-import cls from "./styles.module.scss";
+import _cls from "./styles.module.scss";
 
-export interface GoodsListItemProps {
+export interface GoodsListItemProps extends HasClassName {
   item: Goods;
 }
 
 const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
   const { item } = props;
+  const cls = classes(_cls, props);
 
   return (
     <li className={cls.root}>
