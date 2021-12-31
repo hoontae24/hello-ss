@@ -5,6 +5,7 @@ import { Goods } from "@/typings/domains/goods";
 import Picture from "./Picture";
 import Title from "./Title";
 import PriceTag from "./PriceTag";
+import Badges from "./Badges";
 import Reaction from "./Reaction";
 import cls from "./styles.module.scss";
 
@@ -24,6 +25,7 @@ const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
         discountRate={item.discountRate}
         price={item.price}
       />
+      <Badges badges={item.badges} />
       <Reaction likeCount={item.likeCount} reviewsCount={item.reviewsCount} />
     </li>
   );

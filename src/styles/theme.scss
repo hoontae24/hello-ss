@@ -3,6 +3,7 @@ $color-text-1: #21242a;
 $color-text-2: #555555;
 $color-text-3: #999999;
 $color-bg-1: #ffffff;
+$color-bg-2: #e0e0e0;
 $color-border-1: #e1e4e8;
 $color-primary-main: #096dd9;
 $color-primary-bg: #e6f7ff;
@@ -17,9 +18,11 @@ $font-size-heading-6: 1.125rem;
 $font-size-body-1: 16px; // global default font-size
 $font-size-body-2: 0.875rem;
 $font-size-body-3: 0.75rem;
+$font-size-caption: 0.625rem;
 
 // shape
 $border-radius: 8px;
+$border-radius-small: 2px;
 
 // spacing
 $unit: 8px;
