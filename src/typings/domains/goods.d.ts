@@ -1,3 +1,5 @@
+import { Badge } from "@/consts/badge";
+
 /** 브랜드 정보 */
 export interface Brand {
   /** 브랜드 ID */
@@ -5,11 +7,6 @@ export interface Brand {
   /** 브랜드 이름 */
   name: string;
 }
-
-export type Badge =
-  | "free_delivery" // 무료배송
-  | "only_styleshare" // 단독
-  | "new_arrival"; // 신상품
 
 /** 상품 정보 */
 export interface Goods {
