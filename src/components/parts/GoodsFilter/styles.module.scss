@@ -1,5 +1,24 @@
 @import "@/styles/theme.scss";
 
 .root {
-  padding: spacing(1);
+  -x: 0;
+}
+
+.item {
+  display: inline-block;
+  padding: spacing(0.5) spacing(1);
+  color: $color-text-1;
+  font-size: $font-size-body-3;
+  text-decoration: none;
+  border: border($color-border-1);
+  border-radius: $border-radius-small;
+  &:not(:last-child) {
+    margin-right: spacing(0.5);
+  }
+}
+
+.itemSelected {
+  color: $color-primary-main;
+  background-color: $color-primary-bg;
+  border-color: $color-primary-border;
 }

@@ -29,7 +29,9 @@ const _GoodsTemplate: VFC<GoodsTemplateProps> = (props) => {
 
   return (
     <div>
-      {disableFilter && <GoodsFilter states={filterStates} />}
+      {disableFilter && (
+        <GoodsFilter className={cls.filter} states={filterStates} />
+      )}
       <GoodsList className={cls.list}>
         {data?.map((goods, i) => (
           <GoodsListItem key={i} className={cls.listItem} item={goods} />
