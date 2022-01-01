@@ -33,9 +33,8 @@ const Page: NextPage<PageProps> = (props) => {
         <MainTabView currentMainTab={mainTab} />
       </header>
       <section>
-        <GoodsTemplate data={data} />
+        <GoodsTemplate data={data} onBottomIntersect={loadMore} />
       </section>
-      <button onClick={loadMore}>{String(data?.length)}</button>
     </>
   );
 };
