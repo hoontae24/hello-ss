@@ -28,7 +28,7 @@ const _GoodsTemplate: VFC<GoodsTemplateProps> = (props) => {
   }, [onBottomIntersect]);
 
   return (
-    <div>
+    <div className={cls.root}>
       {disableFilter && (
         <GoodsFilter className={cls.filter} states={filterStates} />
       )}

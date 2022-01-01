@@ -1,7 +1,12 @@
 @import "@/styles/theme.scss";
 
+.root {
+  margin-top: spacing(1);
+}
+
 .filter {
-  padding: spacing(1);
+  margin-bottom: spacing(1);
+  padding: spacing(0) spacing(1);
 }
 
 .list {
