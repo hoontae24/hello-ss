@@ -1,6 +1,7 @@
 import type { UrlObject } from "url";
 
 import { Badge } from "@/consts/badge";
+import { Review } from "@/typings/domains/review-section";
 
 /** 브랜드 정보 */
 export interface Brand {
@@ -35,6 +36,10 @@ export interface Goods {
   };
   /** 뱃지 리스트 */
   badges: Badge[];
+}
+
+export interface GoodsWithReviews extends Goods {
+  reviews: Review[];
 }
 
 export interface GoodsFilterState {

@@ -1,7 +1,7 @@
 @import "@/styles/theme.scss";
 
 @mixin block {
-  &:not(:last-child) {
+  .root &:not(:last-child) {
     margin-bottom: spacing(0.5);
   }
 }
@@ -52,6 +52,10 @@
     margin-right: spacing(0.5);
     font-weight: 600;
   }
+}
+
+.titleOneline {
+  @include multilines(1);
 }
 
 .priceTag {

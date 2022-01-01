@@ -1,15 +1,18 @@
-import { memo, useMemo, VFC } from "react";
+import { Fragment, memo, useMemo, VFC } from "react";
 
 import IntersectionBox from "@/components/atoms/IntersectionBox";
 import GoodsFilter from "@/components/parts/GoodsFilter";
 import GoodsList from "@/components/parts/GoodsList";
 import GoodsListItem from "@/components/parts/GoodsListItem";
+import ReviewSectionTemplate from "@/components/templates/ReviewSection";
 import { Goods, GoodsFilterState } from "@/typings/domains/goods";
+import { ReviewSection } from "@/typings/domains/review-section";
 
 import cls from "./styles.module.scss";
 
 export interface GoodsTemplateProps {
   data: Goods[] | undefined;
+  reviewSection: ReviewSection | null | undefined;
   disableFilter: boolean;
   filterStates: GoodsFilterState[];
   isLiked: (id: number) => boolean;
@@ -20,6 +23,7 @@ export interface GoodsTemplateProps {
 const _GoodsTemplate: VFC<GoodsTemplateProps> = (props) => {
   const {
     data,
+    reviewSection,
     disableFilter,
     filterStates,
     isLiked,
@@ -43,13 +47,20 @@ const _GoodsTemplate: VFC<GoodsTemplateProps> = (props) => {
       )}
       <GoodsList className={cls.list}>
         {data?.map((goods, i) => (
-          <GoodsListItem
-            key={i}
-            className={cls.listItem}
-            item={goods}
-            liked={isLiked(goods.id)}
-            onLikedChange={onLikedChange}
-          />
+          <Fragment key={i}>
+            <GoodsListItem
+              className={cls.listItem}
+              item={goods}
+              liked={isLiked(goods.id)}
+              onLikedChange={onLikedChange}
+            />
+            {reviewSection && reviewSection.position === i + 1 && (
+              <ReviewSectionTemplate
+                className={cls.reviewSection}
+                data={reviewSection}
+              />
+            )}
+          </Fragment>
         ))}
       </GoodsList>
       {handleBottomIntersect && (

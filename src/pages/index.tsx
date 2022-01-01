@@ -6,6 +6,7 @@ import { Badge, getBadgesByQueryValue } from "@/consts/badge";
 import {
   getMainTabByQueryValue,
   getMainTabInitialFetchUrl,
+  getMainTabReviewSectionFetchUrl,
   isMainTabFilterDisabled,
   MainTab,
 } from "@/consts/main-tab";
@@ -35,6 +36,7 @@ const Page: NextPage<PageProps> = (props) => {
           initialFetchUrl={getMainTabInitialFetchUrl(mainTab)}
           disableFilter={isMainTabFilterDisabled(mainTab)}
           filters={filters}
+          reviewSectionFetchUrl={getMainTabReviewSectionFetchUrl(mainTab)}
         />
       </section>
     </>

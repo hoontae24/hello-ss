@@ -19,6 +19,7 @@ export interface MainTabHelper {
   getQueryValue: () => string;
   getInitialFetchUrl: () => string;
   isFilterDisabled: () => boolean;
+  getReviewSectionFetchUrl: () => string | null;
 }
 
 class PopularityHelper implements MainTabHelper {
@@ -26,6 +27,7 @@ class PopularityHelper implements MainTabHelper {
   getQueryValue = () => "popularity";
   getInitialFetchUrl = () => env.API_URL_FOR_POPULARITY;
   isFilterDisabled = () => true;
+  getReviewSectionFetchUrl = () => env.API_URL_FOR_REVIEW_SECTION;
 }
 
 class LatestHelper implements MainTabHelper {
@@ -33,6 +35,7 @@ class LatestHelper implements MainTabHelper {
   getQueryValue = () => "latest";
   getInitialFetchUrl = () => env.API_URL_FOR_LATEST;
   isFilterDisabled = () => false;
+  getReviewSectionFetchUrl = () => null;
 }
 
 class HelperFactory {
@@ -71,4 +74,11 @@ export const getMainTabInitialFetchUrl = (value: MainTab): string => {
 export const isMainTabFilterDisabled = (value: MainTab): boolean => {
   const helper = HelperFactory.getHelper(value);
   return helper.isFilterDisabled();
+};
+
+export const getMainTabReviewSectionFetchUrl = (
+  value: MainTab
+): string | null => {
+  const helper = HelperFactory.getHelper(value);
+  return helper.getReviewSectionFetchUrl();
 };
