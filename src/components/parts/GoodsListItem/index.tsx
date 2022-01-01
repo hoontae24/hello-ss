@@ -1,4 +1,4 @@
-import { memo, useCallback, VFC } from "react";
+import { memo, useCallback, useState, VFC } from "react";
 
 import { classes, HasClassName } from "@/libs/styles";
 import { Goods } from "@/typings/domains/goods";
@@ -20,8 +20,12 @@ const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
   const { item, liked, onLikedChange } = props;
   const cls = classes(_cls, props);
 
+  const [likeCount, setLikeCount] = useState(item.likeCount);
+
   const handleLikedChange = useCallback(() => {
-    onLikedChange(item.id, !liked);
+    const nextLiked = !liked;
+    setLikeCount((prev) => prev + (nextLiked ? 1 : -1));
+    onLikedChange(item.id, nextLiked);
   }, [item, liked, onLikedChange]);
 
   return (
@@ -38,7 +42,7 @@ const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
         price={item.price}
       />
       <Badges badges={item.badges} />
-      <Reaction likeCount={item.likeCount} reviewsCount={item.reviewsCount} />
+      <Reaction likeCount={likeCount} reviewsCount={item.reviewsCount} />
     </li>
   );
 };
