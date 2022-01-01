@@ -27,6 +27,11 @@
   max-width: 75%;
   padding: spacing(0) spacing(1);
 
+  & a {
+    text-decoration: none;
+    color: inherit;
+  }
+
   @include desktop {
     min-width: 450px;
     max-width: 450px;

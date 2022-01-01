@@ -1,4 +1,5 @@
-import { memo, useCallback, useState, VFC } from "react";
+import Link from "next/link";
+import { memo, useCallback, VFC } from "react";
 
 import { classes, HasClassName } from "@/libs/styles";
 import { Goods } from "@/typings/domains/goods";
@@ -26,22 +27,26 @@ const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
 
   return (
     <li className={cls.root}>
-      <Picture
-        pictureId={item.picture.id}
-        liked={liked}
-        onLikeClick={handleLikedChange}
-      />
-      <Title brandName={item.brand.name} goodsName={item.name} />
-      <PriceTag
-        isDiscounted={item.isDiscounted}
-        discountRate={item.discountRate}
-        price={item.price}
-      />
-      <Badges badges={item.badges} />
-      <Reaction
-        likeCount={item.likeCount + (liked ? 1 : 0)}
-        reviewsCount={item.reviewsCount}
-      />
+      <Link href={`#${item.id}`} passHref>
+        <a>
+          <Picture
+            pictureId={item.picture.id}
+            liked={liked}
+            onLikeClick={handleLikedChange}
+          />
+          <Title brandName={item.brand.name} goodsName={item.name} />
+          <PriceTag
+            isDiscounted={item.isDiscounted}
+            discountRate={item.discountRate}
+            price={item.price}
+          />
+          <Badges badges={item.badges} />
+          <Reaction
+            likeCount={item.likeCount + (liked ? 1 : 0)}
+            reviewsCount={item.reviewsCount}
+          />
+        </a>
+      </Link>
     </li>
   );
 };
