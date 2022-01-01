@@ -73,7 +73,7 @@ const _GoodsTemplate: VFC<GoodsTemplateProps> = (props) => {
       {handleBottomIntersect && (
         <IntersectionBox
           onIntersect={handleBottomIntersect}
-          intersectOptions={{ rootMargin: "500px" }}
+          intersectOptions={{ rootMargin: "1000px" }}
         />
       )}
     </div>
