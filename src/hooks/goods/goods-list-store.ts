@@ -28,7 +28,7 @@ export const useGoodsListStore = (deps: GoodsListStoreDeps): GoodsListStore => {
   const filteredGoods =
     filters && filters.length
       ? goodsList?.filter((goods) =>
-          filters.some((badge) => goods.badges.includes(badge))
+          filters.every((badge) => goods.badges.includes(badge))
         )
       : goodsList;
 
