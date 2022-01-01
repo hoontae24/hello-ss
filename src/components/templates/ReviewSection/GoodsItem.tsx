@@ -4,7 +4,7 @@ import { memo, VFC } from "react";
 
 import Title from "@/components/parts/GoodsListItem/Title";
 import PriceTag from "@/components/parts/GoodsListItem/PriceTag";
-import { countWithSuffix } from "@/libs/goods";
+import { countWithSuffix, getPictureUrl } from "@/libs/goods";
 import { GoodsWithReviews } from "@/typings/domains/goods";
 
 import cls from "./styles.module.scss";
@@ -25,7 +25,7 @@ const _GoodsItem: VFC<GoodsItemProps> = (props) => {
               <div className={cls.picture}>
                 <Image
                   alt=""
-                  src={`https://usercontents-d.styleshare.io/images/${item.picture.id}/128x128`}
+                  src={getPictureUrl(item.picture.id, 128)}
                   layout="fill"
                 />
               </div>
@@ -48,7 +48,7 @@ const _GoodsItem: VFC<GoodsItemProps> = (props) => {
                   <div className={cls.frame} />
                   <Image
                     alt=""
-                    src={`https://usercontents-d.styleshare.io/images/${review.picture.id}/128x128`}
+                    src={getPictureUrl(review.picture.id, 128)}
                     layout="fill"
                   />
                 </div>

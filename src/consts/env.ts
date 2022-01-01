@@ -15,6 +15,10 @@ const env = {
       "https://gist.githubusercontent.com/styleshare-frontend/ddc456ec9b9486b6097b61d409edc534/raw/cca24042520fab95fd6e80412eee36cc87da5c2e/goods-review-components.json";
     return process.env.NEXT_PUBLIC_API_URL_FOR_REVIEW_SECTION ?? fallback;
   },
+  get IMAGE_BASE_URL() {
+    const fallback = "https://usercontents-d.styleshare.io/images";
+    return process.env.NEXT_PUBLIC_IMAGE_BASE_URL ?? fallback;
+  },
 } as const;
 
 export default env;

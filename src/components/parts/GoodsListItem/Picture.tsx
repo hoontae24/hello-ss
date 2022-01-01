@@ -5,6 +5,7 @@ import { memo, SyntheticEvent, useCallback, VFC } from "react";
 import { FavoriteIcon, FavoriteOutlineIcon } from "@/components/icons";
 
 import cls from "./styles.module.scss";
+import { getPictureUrl } from "@/libs/goods";
 
 export interface PictureProps {
   pictureId: string;
@@ -26,11 +27,7 @@ const _Picture: VFC<PictureProps> = (props) => {
   return (
     <div className={cls.picture}>
       <div className={cls.pictureFrame} />
-      <Image
-        alt=""
-        src={`https://usercontents-d.styleshare.io/images/${pictureId}/384x384`}
-        layout="fill"
-      />
+      <Image alt="" src={getPictureUrl(pictureId)} layout="fill" />
       <button
         className={clsx(cls.like, liked && cls.likeSelected)}
         onClick={handleLikeClick}
