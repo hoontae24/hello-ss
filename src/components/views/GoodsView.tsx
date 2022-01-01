@@ -2,10 +2,10 @@ import { memo, useCallback, VFC } from "react";
 
 import GoodsTemplate from "@/components/templates/GoodsTemplate";
 import { Badge } from "@/consts/badge";
-import { useGoodsLikedIdStore } from "@/hooks/goods-liked-ids-store";
-import { useGoodsListStore } from "@/hooks/goods-list-store";
-import { useGoodsFilterStates } from "@/hooks/goods-filter-state";
-import { useReviewSectionStore } from "@/hooks/review-section-store";
+import { useGoodsLikedIdStore } from "@/hooks/goods/goods-liked-ids-store";
+import { useGoodsListStore } from "@/hooks/goods/goods-list-store";
+import { useGoodsFilterStates } from "@/hooks/goods/goods-filter-state";
+import { useReviewSectionStore } from "@/hooks/goods/review-section-store";
 
 export interface GoodsViewProps {
   initialFetchUrl: string;

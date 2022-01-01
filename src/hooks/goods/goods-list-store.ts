@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
 import { Badge } from "@/consts/badge";
-import { useRelayStore } from "@/hooks/relay-store";
+import { useRelayStore } from "@/hooks/utils/relay-store";
 import { Goods } from "@/typings/domains/goods";
 
 export interface GoodsListStoreDeps {
