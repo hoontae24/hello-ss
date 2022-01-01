@@ -1,7 +1,8 @@
-import { memo, useCallback, useState, VFC } from "react";
+import { memo, useCallback, VFC } from "react";
 
 import GoodsTemplate from "@/components/templates/GoodsTemplate";
 import { Badge } from "@/consts/badge";
+import { useGoodsLikedIdStore } from "@/hooks/goods-liked-ids-store";
 import { useGoodsListStore } from "@/hooks/goods-list-store";
 import { useGoodsFilterStates } from "@/hooks/goods-filter-state";
 
@@ -17,24 +18,22 @@ const _GoodsView: VFC<GoodsViewProps> = (props) => {
   const filterStates = useGoodsFilterStates({ filters });
   const { data, loadMore } = useGoodsListStore({ initialFetchUrl, filters });
 
-  const [likedIdSet, setLikedIdSet] = useState(new Set<number>());
+  const likedStore = useGoodsLikedIdStore();
 
-  const isLiked = useCallback((id: number) => likedIdSet.has(id), [likedIdSet]);
-
-  const handleLikedChange = useCallback((id: number, liked: boolean) => {
-    setLikedIdSet((prev) => {
-      if (liked) prev.add(id);
-      else prev.delete(id);
-      return new Set(prev);
-    });
-  }, []);
+  const handleLikedChange = useCallback(
+    (id: number, liked: boolean) => {
+      if (liked) likedStore.add(id);
+      else likedStore.remove(id);
+    },
+    [likedStore.add, likedStore.remove]
+  );
 
   return (
     <GoodsTemplate
       data={data}
       disableFilter={disableFilter}
       filterStates={filterStates}
-      isLiked={isLiked}
+      isLiked={likedStore.isLiked}
       onLikedChange={handleLikedChange}
       onBottomIntersect={loadMore}
     />

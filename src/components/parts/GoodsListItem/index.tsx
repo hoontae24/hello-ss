@@ -20,12 +20,8 @@ const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
   const { item, liked, onLikedChange } = props;
   const cls = classes(_cls, props);
 
-  const [likeCount, setLikeCount] = useState(item.likeCount);
-
   const handleLikedChange = useCallback(() => {
-    const nextLiked = !liked;
-    setLikeCount((prev) => prev + (nextLiked ? 1 : -1));
-    onLikedChange(item.id, nextLiked);
+    onLikedChange(item.id, !liked);
   }, [item, liked, onLikedChange]);
 
   return (
@@ -42,7 +38,10 @@ const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
         price={item.price}
       />
       <Badges badges={item.badges} />
-      <Reaction likeCount={likeCount} reviewsCount={item.reviewsCount} />
+      <Reaction
+        likeCount={item.likeCount + (liked ? 1 : 0)}
+        reviewsCount={item.reviewsCount}
+      />
     </li>
   );
 };
