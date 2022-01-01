@@ -60,6 +60,9 @@
     background-color: $color-bg-2;
     border-radius: $border-radius-small;
   }
+  span:not(:last-child) {
+    margin-right: spacing(0.5);
+  }
 }
 
 .reaction {
