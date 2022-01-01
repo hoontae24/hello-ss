@@ -11,7 +11,7 @@ const _Facllback: VFC<FacllbackProps> = () => {
     <div className={cls.fallback}>
       <SadIcon />
       <br />
-      상품을 하나도 찾지 못했어요.
+      해당 조건에 맞는 상품을 찾지 못했어요.
     </div>
   );
 };
