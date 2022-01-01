@@ -8,13 +8,14 @@ import cls from "./styles.module.scss";
 import { getPictureUrl } from "@/libs/goods";
 
 export interface PictureProps {
+  title?: string;
   pictureId: string;
   liked: boolean;
   onLikeClick: () => void;
 }
 
 const _Picture: VFC<PictureProps> = (props) => {
-  const { pictureId, liked, onLikeClick } = props;
+  const { title, pictureId, liked, onLikeClick } = props;
 
   const handleLikeClick = useCallback(
     (e: SyntheticEvent) => {
@@ -27,7 +28,12 @@ const _Picture: VFC<PictureProps> = (props) => {
   return (
     <div className={cls.picture}>
       <div className={cls.pictureFrame} />
-      <Image alt="" src={getPictureUrl(pictureId)} layout="fill" />
+      <Image
+        title={title}
+        alt={title}
+        src={getPictureUrl(pictureId)}
+        layout="fill"
+      />
       <button
         className={clsx(cls.like, liked && cls.likeSelected)}
         onClick={handleLikeClick}

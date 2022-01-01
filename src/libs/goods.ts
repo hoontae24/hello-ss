@@ -1,4 +1,5 @@
 import env from "@/consts/env";
+import { Goods } from "@/typings/domains/goods";
 
 export const countWithSuffix = (count: number): string => {
   const suffixes = ["M", "K", ""];
@@ -19,4 +20,8 @@ export const getPictureUrl = (
 ) => {
   const url = `${env.IMAGE_BASE_URL}/${pictureId}/${size}x${size}`;
   return url;
+};
+
+export const getGoodsTitle = (goods: Goods): string => {
+  return `${goods.brand.name} ${goods.name}`;
 };

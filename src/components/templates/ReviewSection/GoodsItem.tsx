@@ -24,7 +24,8 @@ const _GoodsItem: VFC<GoodsItemProps> = (props) => {
             <div className={cls.goods}>
               <div className={cls.picture}>
                 <Image
-                  alt=""
+                  title={item.name}
+                  alt={item.name}
                   src={getPictureUrl(item.picture.id, 128)}
                   layout="fill"
                 />
@@ -47,7 +48,8 @@ const _GoodsItem: VFC<GoodsItemProps> = (props) => {
                 <div key={review.id} className={cls.reviewItem}>
                   <div className={cls.frame} />
                   <Image
-                    alt=""
+                    title={review.authorUsername}
+                    alt={review.authorUsername}
                     src={getPictureUrl(review.picture.id, 128)}
                     layout="fill"
                   />

@@ -10,6 +10,7 @@ import PriceTag from "./PriceTag";
 import Badges from "./Badges";
 import Reaction from "./Reaction";
 import _cls from "./styles.module.scss";
+import { getGoodsTitle } from "@/libs/goods";
 
 export interface GoodsListItemProps extends HasClassName {
   item: Goods;
@@ -21,6 +22,8 @@ const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
   const { item, liked, onLikedChange } = props;
   const cls = classes(_cls, props);
 
+  const title = getGoodsTitle(item);
+
   const handleLikedChange = useCallback(() => {
     onLikedChange(item.id, !liked);
   }, [item, liked, onLikedChange]);
@@ -30,11 +33,16 @@ const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
       <Link href={`#${item.id}`} passHref>
         <a>
           <Picture
+            title={title}
             pictureId={item.picture.id}
             liked={liked}
             onLikeClick={handleLikedChange}
           />
-          <Title brandName={item.brand.name} goodsName={item.name} />
+          <Title
+            brandName={item.brand.name}
+            goodsName={item.name}
+            title={title}
+          />
           <PriceTag
             isDiscounted={item.isDiscounted}
             discountRate={item.discountRate}
