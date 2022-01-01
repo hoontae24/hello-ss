@@ -12,11 +12,20 @@ export interface GoodsTemplateProps {
   data: Goods[] | undefined;
   disableFilter: boolean;
   filterStates: GoodsFilterState[];
+  isLiked: (id: number) => boolean;
+  onLikedChange: (id: number, liked: boolean) => void;
   onBottomIntersect?: () => void;
 }
 
 const _GoodsTemplate: VFC<GoodsTemplateProps> = (props) => {
-  const { data, disableFilter, filterStates, onBottomIntersect } = props;
+  const {
+    data,
+    disableFilter,
+    filterStates,
+    isLiked,
+    onLikedChange,
+    onBottomIntersect,
+  } = props;
 
   const handleBottomIntersect = useMemo(() => {
     if (!onBottomIntersect) return;
@@ -34,7 +43,13 @@ const _GoodsTemplate: VFC<GoodsTemplateProps> = (props) => {
       )}
       <GoodsList className={cls.list}>
         {data?.map((goods, i) => (
-          <GoodsListItem key={i} className={cls.listItem} item={goods} />
+          <GoodsListItem
+            key={i}
+            className={cls.listItem}
+            item={goods}
+            liked={isLiked(goods.id)}
+            onLikedChange={onLikedChange}
+          />
         ))}
       </GoodsList>
       {handleBottomIntersect && (

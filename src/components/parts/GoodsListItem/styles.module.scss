@@ -26,6 +26,21 @@
     height: 0;
     padding-bottom: 100%;
   }
+
+  .like {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: spacing(0.5);
+    color: $color-text-4;
+    background: none;
+    border: none;
+    border-radius: 50%;
+  }
+
+  .likeSelected {
+    color: red;
+  }
 }
 
 .title {

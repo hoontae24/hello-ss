@@ -1,4 +1,4 @@
-import { memo, VFC } from "react";
+import { memo, useCallback, VFC } from "react";
 
 import { classes, HasClassName } from "@/libs/styles";
 import { Goods } from "@/typings/domains/goods";
@@ -12,15 +12,25 @@ import _cls from "./styles.module.scss";
 
 export interface GoodsListItemProps extends HasClassName {
   item: Goods;
+  liked: boolean;
+  onLikedChange: (id: number, liked: boolean) => void;
 }
 
 const _GoodsListItem: VFC<GoodsListItemProps> = (props) => {
-  const { item } = props;
+  const { item, liked, onLikedChange } = props;
   const cls = classes(_cls, props);
+
+  const handleLikedChange = useCallback(() => {
+    onLikedChange(item.id, !liked);
+  }, [item, liked, onLikedChange]);
 
   return (
     <li className={cls.root}>
-      <Picture pictureId={item.picture.id} />
+      <Picture
+        pictureId={item.picture.id}
+        liked={liked}
+        onLikeClick={handleLikedChange}
+      />
       <Title brandName={item.brand.name} goodsName={item.name} />
       <PriceTag
         isDiscounted={item.isDiscounted}
