@@ -18,18 +18,21 @@ export interface MainTabHelper {
   getLabel: () => string;
   getQueryValue: () => string;
   getInitialFetchUrl: () => string;
+  isFilterDisabled: () => boolean;
 }
 
 class PopularityHelper implements MainTabHelper {
   getLabel = () => "인기순";
   getQueryValue = () => "popularity";
   getInitialFetchUrl = () => env.API_URL_FOR_POPULARITY;
+  isFilterDisabled = () => true;
 }
 
 class LatestHelper implements MainTabHelper {
   getLabel = () => "최신순";
   getQueryValue = () => "latest";
   getInitialFetchUrl = () => env.API_URL_FOR_LATEST;
+  isFilterDisabled = () => false;
 }
 
 class HelperFactory {
@@ -63,4 +66,9 @@ export const getMainTabByQueryValue = (value: unknown): MainTab => {
 export const getMainTabInitialFetchUrl = (value: MainTab): string => {
   const helper = HelperFactory.getHelper(value);
   return helper.getInitialFetchUrl();
+};
+
+export const isMainTabFilterDisabled = (value: MainTab): boolean => {
+  const helper = HelperFactory.getHelper(value);
+  return helper.isFilterDisabled();
 };

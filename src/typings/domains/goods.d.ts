@@ -1,3 +1,5 @@
+import type { UrlObject } from "url";
+
 import { Badge } from "@/consts/badge";
 
 /** 브랜드 정보 */
@@ -33,4 +35,10 @@ export interface Goods {
   };
   /** 뱃지 리스트 */
   badges: Badge[];
+}
+
+export interface GoodsFilterState {
+  value: Badge;
+  selected: boolean;
+  href: string | UrlObject;
 }

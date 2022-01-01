@@ -1,3 +1,4 @@
+import { equals } from "@/libs/functions";
 import { ValueOf } from "@/typings/utils";
 
 export const Badge = {
@@ -8,6 +9,8 @@ export const Badge = {
 export type Badge = ValueOf<typeof Badge>;
 
 export const allBadges: Badge[] = Object.values(Badge);
+export const isValidBadge = (value: unknown): value is Badge =>
+  allBadges.some(equals(value));
 
 export interface BadgeHelper {
   getLabel: () => string;
@@ -40,4 +43,15 @@ class HelperFactory {
 export const getBadgeLabel = (value: Badge): string => {
   const helper = HelperFactory.getHelper(value);
   return helper.getLabel();
+};
+
+export const getBadgesByQueryValue = (
+  value: string | string[] | undefined
+): Badge[] => {
+  const result: Badge[] = [];
+  if (value) {
+    const badges = Array.isArray(value) ? value : [value];
+    result.push(...badges.filter(isValidBadge));
+  }
+  return result;
 };

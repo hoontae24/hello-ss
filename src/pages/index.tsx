@@ -2,19 +2,22 @@ import { GetServerSideProps, NextPage } from "next";
 
 import GoodsView from "@/components/views/GoodsView";
 import MainTabView from "@/components/views/MainTabView";
+import { Badge, getBadgesByQueryValue } from "@/consts/badge";
 import {
   getMainTabByQueryValue,
   getMainTabInitialFetchUrl,
+  isMainTabFilterDisabled,
   MainTab,
 } from "@/consts/main-tab";
 import { getQueryParamKey, QueryParam } from "@/consts/query-param";
 
 interface PageProps {
   mainTab: MainTab;
+  filters: Badge[];
 }
 
 const Page: NextPage<PageProps> = (props) => {
-  const { mainTab } = props;
+  const { mainTab, filters } = props;
 
   return (
     <>
@@ -28,7 +31,11 @@ const Page: NextPage<PageProps> = (props) => {
         <MainTabView currentMainTab={mainTab} />
       </header>
       <section>
-        <GoodsView initialFetchUrl={getMainTabInitialFetchUrl(mainTab)} />
+        <GoodsView
+          initialFetchUrl={getMainTabInitialFetchUrl(mainTab)}
+          disableFilter={isMainTabFilterDisabled(mainTab)}
+          filters={filters}
+        />
       </section>
     </>
   );
@@ -41,10 +48,13 @@ export const getServerSideProps: GetServerSideProps<PageProps> = async (
 ) => {
   const mainTabQueryValue = ctx.query[getQueryParamKey(QueryParam.MAIN_TAB)];
   const mainTab = getMainTabByQueryValue(mainTabQueryValue);
+  const badgesQueryValue = ctx.query[getQueryParamKey(QueryParam.BADGE_FILTER)];
+  const badges = getBadgesByQueryValue(badgesQueryValue);
 
   return {
     props: {
       mainTab: mainTab,
+      filters: badges,
     },
   };
 };
