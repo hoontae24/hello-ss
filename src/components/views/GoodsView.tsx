@@ -15,7 +15,7 @@ const _GoodsView: VFC<GoodsViewProps> = (props) => {
   const { initialFetchUrl, disableFilter, filters } = props;
 
   const filterStates = useGoodsFilterStates({ filters });
-  const { data, loadMore } = useGoodsListStore({ initialFetchUrl });
+  const { data, loadMore } = useGoodsListStore({ initialFetchUrl, filters });
 
   return (
     <GoodsTemplate

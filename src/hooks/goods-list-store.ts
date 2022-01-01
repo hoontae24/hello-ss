@@ -1,10 +1,12 @@
 import { useMemo } from "react";
 
+import { Badge } from "@/consts/badge";
 import { useRelayStore } from "@/hooks/relay-store";
 import { Goods } from "@/typings/domains/goods";
 
 export interface GoodsListStoreDeps {
   initialFetchUrl: string;
+  filters?: Badge[];
 }
 
 export interface GoodsListStore {
@@ -13,7 +15,7 @@ export interface GoodsListStore {
 }
 
 export const useGoodsListStore = (deps: GoodsListStoreDeps): GoodsListStore => {
-  const { initialFetchUrl } = deps;
+  const { initialFetchUrl, filters } = deps;
 
   const { data, sprint } = useRelayStore({
     initialFetchUrl: initialFetchUrl,
@@ -21,10 +23,16 @@ export const useGoodsListStore = (deps: GoodsListStoreDeps): GoodsListStore => {
     next,
   });
 
-  const goods = data?.flatMap((data) => data.data);
+  const goodsList = data?.flatMap((data) => data.data);
+  const filteredGoods =
+    filters && filters.length
+      ? goodsList?.filter((goods) =>
+          filters.some((badge) => goods.badges.includes(badge))
+        )
+      : goodsList;
 
   const store: GoodsListStore = {
-    data: goods,
+    data: filteredGoods,
     loadMore: sprint,
   };
 
