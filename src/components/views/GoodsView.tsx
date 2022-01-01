@@ -19,11 +19,17 @@ const _GoodsView: VFC<GoodsViewProps> = (props) => {
     props;
 
   const filterStates = useGoodsFilterStates({ filters });
-  const { data, loadMore } = useGoodsListStore({ initialFetchUrl, filters });
+  const {
+    loading: goodsLoading,
+    data,
+    loadMore,
+  } = useGoodsListStore({ initialFetchUrl, filters });
   const likedStore = useGoodsLikedIdStore();
-  const reviewSectionStore = useReviewSectionStore({
+  const { loading: reviewLoading, reviewSection } = useReviewSectionStore({
     fetchUrl: reviewSectionFetchUrl,
   });
+
+  const loading = goodsLoading || reviewLoading;
 
   const handleLikedChange = useCallback(
     (id: number, liked: boolean) => {
@@ -35,8 +41,9 @@ const _GoodsView: VFC<GoodsViewProps> = (props) => {
 
   return (
     <GoodsTemplate
+      loading={loading}
       data={data}
-      reviewSection={reviewSectionStore.reviewSection}
+      reviewSection={reviewSection}
       disableFilter={disableFilter}
       filterStates={filterStates}
       isLiked={likedStore.isLiked}

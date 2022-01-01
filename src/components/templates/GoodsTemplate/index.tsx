@@ -8,9 +8,12 @@ import ReviewSectionTemplate from "@/components/templates/ReviewSection";
 import { Goods, GoodsFilterState } from "@/typings/domains/goods";
 import { ReviewSection } from "@/typings/domains/review-section";
 
+import Skeletons from "./Skeletons";
+import Facllback from "./Fallback";
 import cls from "./styles.module.scss";
 
 export interface GoodsTemplateProps {
+  loading: boolean;
   data: Goods[] | undefined;
   reviewSection: ReviewSection | null | undefined;
   disableFilter: boolean;
@@ -22,6 +25,7 @@ export interface GoodsTemplateProps {
 
 const _GoodsTemplate: VFC<GoodsTemplateProps> = (props) => {
   const {
+    loading,
     data,
     reviewSection,
     disableFilter,
@@ -46,22 +50,25 @@ const _GoodsTemplate: VFC<GoodsTemplateProps> = (props) => {
         <GoodsFilter className={cls.filter} states={filterStates} />
       )}
       <GoodsList className={cls.list}>
-        {data?.map((goods, i) => (
-          <Fragment key={i}>
-            <GoodsListItem
-              className={cls.listItem}
-              item={goods}
-              liked={isLiked(goods.id)}
-              onLikedChange={onLikedChange}
-            />
-            {reviewSection && reviewSection.position === i + 1 && (
-              <ReviewSectionTemplate
-                className={cls.reviewSection}
-                data={reviewSection}
+        {loading && <Skeletons />}
+        {!loading && data?.length === 0 && <Facllback />}
+        {!loading &&
+          data?.map((goods, i) => (
+            <Fragment key={i}>
+              <GoodsListItem
+                className={cls.listItem}
+                item={goods}
+                liked={isLiked(goods.id)}
+                onLikedChange={onLikedChange}
               />
-            )}
-          </Fragment>
-        ))}
+              {reviewSection && reviewSection.position === i + 1 && (
+                <ReviewSectionTemplate
+                  className={cls.reviewSection}
+                  data={reviewSection}
+                />
+              )}
+            </Fragment>
+          ))}
       </GoodsList>
       {handleBottomIntersect && (
         <IntersectionBox

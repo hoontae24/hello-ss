@@ -10,6 +10,7 @@ export interface GoodsListStoreDeps {
 }
 
 export interface GoodsListStore {
+  loading: boolean;
   data: Goods[] | undefined;
   loadMore: () => Promise<void>;
 }
@@ -32,6 +33,7 @@ export const useGoodsListStore = (deps: GoodsListStoreDeps): GoodsListStore => {
       : goodsList;
 
   const store: GoodsListStore = {
+    loading: data === undefined,
     data: filteredGoods,
     loadMore: sprint,
   };

@@ -1,10 +1,10 @@
+import clsx from "clsx";
 import Image from "next/image";
 import { memo, SyntheticEvent, useCallback, VFC } from "react";
 
 import { FavoriteIcon, FavoriteOutlineIcon } from "@/components/icons";
 
 import cls from "./styles.module.scss";
-import clsx from "clsx";
 
 export interface PictureProps {
   pictureId: string;
